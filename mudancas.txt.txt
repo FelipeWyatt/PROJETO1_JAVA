@@ -1,0 +1,87 @@
+Alterações feitas:
+- Arrumei Cliente
+	- Criei os metodos
+	- id é numClientes + 1 porque Admin deve ser o id 0
+	- definição do tipo da conta por um int
+	- Faltou criar o toString()
+
+- ContaBancaria
+	- Arrumei o id
+	- metodos de ativos movidos para contaInvestidor
+
+- ContaInvestidor
+	- ArrayList de investimentos, deve funcionar com add e remove ao inves de set
+	- resgatarAtivo vira resgatarInvestimento que fica mais geral para uma futura adição de outro tipo de investimento
+	- mostraAtivos agora pega os toStrings de cada tipo de investimento
+	- getNomeAtivo pode ser mudado para gerar uma string de ativos em vez de printar uma lista de Strings
+
+- ContaPoupança
+	- variável de rendimento dário deve ser static para ser acessível e fora
+
+- Admin
+	- Criei função que cria um novo cliente, pois clientes ficam guardados no ArrayList clientes
+	- Alterei desativaCliente
+	- Ver cliente alterarSaldo pode ser simplificado com for(Cliente i : clientes)
+	- clientes deve ser static, para Cliente poder adicionar-se na lista de clientes do Admin
+
+- Main
+	- Tudo deve ser static porque Main não é instanciado
+	- Criei a função rendeTudo que rende todas as contas de todos os Clientes a partir do número de dias passados de quando foi rendido pela última vez
+
+
+
+Problemas a averiguar:
+
+- Criar a interface no terminal por meio de comandos - Não
+
+
+A fazer:
+- toString Cliente - Miguel
+- Adicionar verificacao de status nos metodos de Contas e Cliente - 02
+- Adicionar metodo reativaCliente em Admin - Felipe
+
+
+- Passar todos os prints pro main - juntos
+- demonstração do sistema na Main - juntos
+
+
+- Atualizar UML geral (Admin é static) - Por último
+
+
+
+TESTES NA MAIN
+***Declarar objetos***
+- 4 clientes
+	- 2 Corrente -> Investidor
+	- 1 Poupança
+	- 1 Investidor
+
+***testar metodos***
+Metodos Cliente
+- fecharConta() em Corrrente
+- AbrirConta(Investidor) em Corrente
+- verConta() em Poupança
+
+Metodos Admin
+- desativaCliente em Corrente
+	- testar depositar()
+	- testar retirar()
+- reativaCliente em Corrente
+- alterarSaldo em Poupança
+- verCliente() em Investidor
+
+Metodos ContaBancaria
+- retirar 
+- depositar
+
+Metodos ContaInvestidor
+- criarInvestimento 2 investimentos diferentes em cada cliente
+- mostraAtivos
+- resgataAtivo de 1 cliente
+- mostraAtivos
+
+Main
+passar dias com setDAtaAtual e mostrar todas as contas rendendo
+
+
+
