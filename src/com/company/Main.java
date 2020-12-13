@@ -1,7 +1,9 @@
 package com.company;
+import java.util.*;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class Main {
     // Tudo static porque Main não é instanciada
@@ -12,7 +14,7 @@ public class Main {
 
         Admin.novoCliente("Felipe", "abcd", 19, Sexo.MASCULINO, "Engenheiro", 5000f);
         Cliente c1 = Admin.getClientes().get(0);
-        Admin.novoCliente("Matheus", "02", 13, Sexo.FEMININO, "Engenheiro", 40000f);
+        Admin.novoCliente("Matheus", "02", 13, Sexo.MASCULINO, "Engenheiro", 40000f);
         Cliente c2 = Admin.getClientes().get(1);
         Cliente c3 = new Cliente("Miguelzinho", "senha123", 25, Sexo.MASCULINO, "Soldador", 10000.01f);
         Cliente c4 = new Cliente("Pedrão", "Diniz", 34, Sexo.MASCULINO, "Tecnico do senai", 20000f);
@@ -22,11 +24,62 @@ public class Main {
         c3.abrirConta(3); // Conta Investidor
         c4.abrirConta(1); // Conta Corrente
 
+        Scanner entrada = new Scanner(System.in);
+        Cliente c5 = new Cliente();
+        boolean v = false;
+
+        System.out.print("*** Cadastro de novo cliente - Entradas do usuário ***\nInsira as informações solicitadas abaixo:\n");
+        System.out.print("Nome: ");
+        c5.setNome(entrada.nextLine());
+        System.out.print("Idade: ");
+        c5.setIdade(entrada.nextInt());
+        System.out.print("Sexo (M ou F): ");
+        while (!v) {
+            String v2 = entrada.next();
+            if (v2.equals("M")){
+                c5.setSexo(Sexo.MASCULINO);
+                v = true;
+            } else if (v2.equals("F")) {
+                c5.setSexo(Sexo.FEMININO);
+                v = true;
+            } else {
+                System.out.print("Entrada inválida, por favor, redigite: ");
+            }
+        }
+        entrada.nextLine();
+        System.out.print("Profissao: ");
+        c5.setProfissao(entrada.nextLine());
+        System.out.print("O login para acesso à sua conta é: ");
+        System.out.print(c5.getId());
+        System.out.print("\nDefina uma senha (sem espaços): ");
+        c5.setSenha(entrada.next());
+        System.out.print("Qual o tipo da conta?\n 1 - Conta Corrente\n 2 - Conta Poupança\n 3 - Conta Investidor\nResp: ");
+        v = false;
+        while (!v) {
+            int v3 = entrada.nextInt();
+            if (v3 == 1){
+                c5.abrirConta(v3);
+                v = true;
+            } else if (v3 == 2) {
+                c5.abrirConta(v3);
+                v = true;
+            } else if (v3 == 3){
+                c5.abrirConta(v3);
+                v = true;
+            } else {
+                System.out.print("Entrada inválida, por favor, redigite: ");
+            }
+        }
+        System.out.print("Qual o valor do depósito inicial (utilize ',' para casas decimais)? ");
+        c5.getConta().depositar(entrada.nextFloat());
+        System.out.print("Novo cliente criado. Seja bem-vindo!\n\n");
+
         System.out.println("*** Instanciando Objetos ***");
         System.out.println(c1);
         System.out.println(c2);
         System.out.println(c3);
         System.out.println(c4);
+        System.out.println(c5);
 
 
         System.out.println("*** Métodos de Cliente ***");
@@ -46,13 +99,25 @@ public class Main {
         if (c2.getConta().depositar(valor)) System.out.println("Depósito de R$" + valor + " realizado com sucesso!");
         else System.out.println("Não foi possível fazer o depósito!");
         System.out.println(c2);
+
         System.out.println("-> ContaBancaria.retirar()");
 
         valor = 720;
         if (c3.getConta().retirar(valor)) System.out.println("Valor de R$" + valor + " retirado com sucesso!");
         else System.out.println("Não foi possível retirar o valor de R$" + valor + " !");
-
         System.out.println(c3);
+
+        System.out.println("-> ContaBancaria.depositar() - objeto criado via entradas do usuário");
+        valor = 200;
+        if (c5.getConta().depositar(valor)) System.out.println("Depósito de R$" + valor + " realizado com sucesso!");
+        else System.out.println("Não foi possível fazer o depósito!");
+        System.out.println(c5);
+
+        System.out.println("-> ContaBancaria.retirar() - objeto criado via entradas do usuário");
+        valor = 2000;
+        if (c5.getConta().retirar(valor)) System.out.println("Valor de R$" + valor + " retirado com sucesso!");
+        else System.out.println("Não foi possível retirar o valor de R$" + valor + " !");
+        System.out.println(c5);
 
         System.out.println("*** Métodos de Admin ***");
         System.out.println("-> Admin.desativaCliente()");
@@ -125,7 +190,6 @@ public class Main {
         System.out.println(c2.getConta());
         System.out.println(conta3);
         System.out.println(conta4);
-
     }
 
     public static void rendeTudo(GregorianCalendar ultimaVezQueRendeu){

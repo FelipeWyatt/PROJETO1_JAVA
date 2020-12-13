@@ -1,12 +1,11 @@
 package com.company;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class ContaBancaria {
     private static int numContas = 0;
     private final int id; // Número/login da conta
-    private float saldo;
+    private float saldo; //saldo dispoível para saques e investimentos. Diferente do dinheiro investido (para contas do tipo investidor)
     private final Cliente dono;
 
     //MÉTODO CONSTRUTOR
@@ -31,7 +30,7 @@ public class ContaBancaria {
 
 
     //DEMAIS MÉTODOS
-    public boolean retirar (float valor) { //porque retornar boolean?
+    public boolean retirar (float valor) { //faz saques da conta e retorna se foi possível ou não com base no saldo disponível
     	if (dono.getStatus()) {
 	        if (valor <= getSaldo()) {
 	            this.saldo = this.saldo - valor;
@@ -49,7 +48,7 @@ public class ContaBancaria {
     		
     }
 
-    public boolean depositar (float valor) {
+    public boolean depositar (float valor) { //adicina determinada quantia ao saldo da conta
     	if (dono.getStatus()) {
 	        this.saldo = this.saldo + valor;
 	        // também deve-se atualizar o montanteTotal do cliente

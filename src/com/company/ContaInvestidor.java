@@ -30,7 +30,8 @@ public class ContaInvestidor extends ContaBancaria { // Tem acesso a investiment
     	}
     }
 
-    public void resgatarInvestimento(Investimento investimento){
+    //Retira o dinheiro aplicado em um investimento determinado, rendendo uma quantiidade propocional ao tempo que o dinheiro ficou aplicado. Caso a retirada eja feita antes da data de vencimento do ativo, uma penalidade é aplicada
+    public void resgatarInvestimento(Investimento investimento) {
     	if (getDono().getStatus()) {
             // Metodo mais geral que poderá ser adicionado outros tipos de investimentos
             if (investimento instanceof RendaFixa) { // Tem regras de resgate diferentes para cada tipo de investimento

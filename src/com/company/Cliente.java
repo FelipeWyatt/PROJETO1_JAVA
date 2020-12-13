@@ -39,6 +39,8 @@ public class Cliente {
 
         numClientes++;
 
+        setStatus(true);
+
         //Adiciona o cliente na lista de clientes do Admin
         Admin.adicionaCliente(this);
     }
@@ -155,8 +157,8 @@ public class Cliente {
         out += "Status: " + converteStatus(getStatus()) + "\n";
         out += "Dinheiro total: R$" + d1.format(getDinheiroTotal()) + "\n";
         if(conta != null){
-            out += "Tipo da conta: " + tipoDaConta() + "\n";
             out += "ID da conta: " + getConta().getId() + "\n";
+            out += "Tipo da conta: " + tipoDaConta() + "\n";
             out += "Saldo da conta: R$" + d1.format(getConta().getSaldo()) + "\n";
             if(this.getConta() instanceof ContaInvestidor){
             	out += "Total Investido: R$";            
