@@ -3,7 +3,9 @@ package com.company;
 import java.util.ArrayList;
 
 public class Admin {
+	// Todos atributos e métodos de Admin são estáticos, pois Admin é único
 	
+	// Atributos
 	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	private static final int id = 0;
 	private static String senha = "abcd";
