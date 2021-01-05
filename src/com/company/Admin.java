@@ -12,7 +12,7 @@ public class Admin {
 	public static ArrayList<Cliente> getClientes() {
 		return clientes;
 	}
-	// Não faz sentido ter setClientes
+	// Clientes são adicionados ou removidos
 
 	public static String getSenha() {
 		return senha;
